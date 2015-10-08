@@ -17,11 +17,13 @@
 <?php
 	if( !empty($_POST['domain']) && !empty($_POST['vhost']) )
 	{
+		$vhost = str_replace('$DOMAIN_REPLACE', $domain, $vhost);
 		writeFileContent($domain, $vhost);
 		echo 'Perfecto, ahora ejecutá:<br>';
 		echo 'sudo sh /var/tools/nginx/addvhost.sh '.$domain.'<br>';
-		echo 'sudo nginx -s reload';
-
+		echo '<br>';
+		echo 'En caso de error para borrar ejecuta: <br>';
+		echo 'sudo sh /var/tools/nginx/delvhost.sh '.$domain.'<br>';
 	}
 ?>
 
